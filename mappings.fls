@@ -1,5 +1,0 @@
-PWD /media/LINUX/nabil-alhanif/.config/nvim
-INPUT /usr/share/texmf-dist/web2c/texmf.cnf
-INPUT /var/lib/texmf/web2c/pdftex/pdflatex.fmt
-INPUT /media/LINUX/nabil-alhanif/.config/nvim/lua/mappings.lua
-OUTPUT mappings.log
