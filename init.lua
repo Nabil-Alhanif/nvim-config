@@ -3,6 +3,7 @@ vim.cmd([[runtime! archlinux.vim]])
 -- Settings
 require('settings')
 require('mappings')
+require('modules/command')
 
 -- Theme
 require('theme')

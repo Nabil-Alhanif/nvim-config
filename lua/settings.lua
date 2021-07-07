@@ -19,7 +19,7 @@ vim.opt.incsearch     = true    -- Search as you type
 vim.opt.showcmd       = true    -- Show current command
 vim.opt.termguicolors = true    -- True color support
 vim.opt.number        = true    -- Show line number
-vim.go.wrap          = true    -- Show long line as multiple line
+vim.opt.wrap          = true    -- Show long line as multiple line
 
 -- Split panes
 vim.opt.splitbelow    = true    -- Open new split panes to the bottom

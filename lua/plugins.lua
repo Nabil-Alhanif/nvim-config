@@ -24,6 +24,7 @@ return require('packer').startup(function(use)
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'kabouzeid/nvim-lspinstall'
+    use 'jakewvincent/texmagic.nvim'   -- Latex stuff
 
     -- Auto Complete
     use 'hrsh7th/nvim-compe'

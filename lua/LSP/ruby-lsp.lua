@@ -1,3 +1,3 @@
 return {
-    cmd = { vim.fn.stdpath('data')..'/lspinstall/ruby/solargraph/solargraph', '--stdio' },
+    cmd = { vim.fn.stdpath('data')..'/lspinstall/ruby/solargraph/solargraph', 'stdio' }
 }

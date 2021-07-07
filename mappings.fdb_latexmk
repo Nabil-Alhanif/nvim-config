@@ -1,0 +1,10 @@
+# Fdb version 3
+["pdflatex"] 1625105716 "/media/LINUX/nabil-alhanif/.config/nvim/lua/mappings.lua" "mappings.pdf" "mappings" 1625105716
+  "/media/LINUX/nabil-alhanif/.config/nvim/lua/mappings.lua" 1624144362 4727 b91f74b47a1c3fdbd1ebf42749284d60 ""
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1617738065 39911 2da6c67557ec033436fe5418a70a8a61 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1623205598 2812674 2f253e6ce2f3462fcda833c93253cedc ""
+  "lua/mappings.lua" 1624144362 4727 b91f74b47a1c3fdbd1ebf42749284d60 ""
+  "mappings.aux" 1625105716 8 a94a2480d3289e625eea47cd1b285758 ""
+  (generated)
+  "mappings.log"
+  "mappings.pdf"
