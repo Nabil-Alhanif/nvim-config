@@ -90,6 +90,15 @@ noremap('t', ',i', '<C-\\><C-n>:RnvimrResize<CR>', {silent = true})
 noremap('n', ',r', ':RnvimrToggle<CR>', {silent = true})
 noremap('t', ',r', '<C-\\><C-n>:RnvimrToggle<CR>', {silent = true})
 
+-- ----------------------
+-- | Telescope Mappings |
+-- ----------------------
+
+noremap('n', 'ff', '<cmd>Telescope find_files<CR>', {silent = true});
+noremap('n', 'fg', '<cmd>Telescope live_grep<cr>', {silent = true});
+noremap('n', 'fb', '<cmd>Telescope buffers<cr>', {silent = true});
+noremap('n', 'fh', '<cmd>Telescope help_tags<cr>', {silent = true});
+
 -- ---------------------
 -- | Terminal Mappings |
 -- ---------------------

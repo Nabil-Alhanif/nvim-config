@@ -113,6 +113,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/media/LINUX/nabil-alhanif/.local/share/nvim/site/pack/packer/start/rnvimr"
   },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/media/LINUX/nabil-alhanif/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
   ["texmagic.nvim"] = {
     loaded = true,
     path = "/media/LINUX/nabil-alhanif/.local/share/nvim/site/pack/packer/start/texmagic.nvim"

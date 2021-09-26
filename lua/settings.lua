@@ -24,3 +24,8 @@ vim.opt.wrap          = true    -- Show long line as multiple line
 -- Split panes
 vim.opt.splitbelow    = true    -- Open new split panes to the bottom
 vim.opt.splitright    = true    -- Open new split panes to the right
+
+-- Folding
+vim.opt_local.foldmethod = "indent" -- Set folding on indent
+vim.opt.foldenable       = false    -- No fold enable
+vim.opt.foldlevel        = 99       -- IDK

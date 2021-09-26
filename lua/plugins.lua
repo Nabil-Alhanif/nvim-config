@@ -21,6 +21,13 @@ return require('packer').startup(function(use)
 
     use 'kevinhwang91/rnvimr'          -- Neovim integration with ranger
 
+    use {
+        'nvim-telescope/telescope.nvim',
+        requires = {
+            {'nvim-lua/plenary.nvim'},
+        }
+    }
+
     -- LSP
     use 'neovim/nvim-lspconfig'
     use 'kabouzeid/nvim-lspinstall'
