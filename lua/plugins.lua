@@ -16,7 +16,11 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'       -- Package manager written in lua
 
     -- Explorer
-    use 'kyazdani42/nvim-tree.lua'     -- Lua based file explorer
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = 'kyazdani42/nvim-web-devicons',
+        config = function() require'nvim-tree'.setup {} end
+    }
     use 'kyazdani42/nvim-web-devicons' -- Icons for nvim-tree
 
     use 'kevinhwang91/rnvimr'          -- Neovim integration with ranger
