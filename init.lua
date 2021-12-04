@@ -1,11 +1,12 @@
 vim.cmd([[runtime! archlinux.vim]])
 
+require('settings')
+
 -- Plugins
 require('plugins')
 require('plugin-config')
 
 -- Settings
-require('settings')
 require('mappings')
 require('modules/command')
 

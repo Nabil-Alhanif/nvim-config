@@ -51,6 +51,7 @@ return require('packer').startup(function(use)
 
     -- Snippet
     use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/cmp-vsnip'
 
     -- Lua functions
     use 'nvim-lua/plenary.nvim'
@@ -67,6 +68,7 @@ return require('packer').startup(function(use)
     -- Theme
     use 'christianchiarulli/nvcode-color-schemes.vim'
     use 'folke/tokyonight.nvim'
+    use 'lukas-reineke/indent-blankline.nvim'
 
     if packer_bootstrap then
         require('packer').sync()

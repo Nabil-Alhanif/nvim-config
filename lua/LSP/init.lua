@@ -3,14 +3,7 @@
 -- ----------------------------
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentaion',
-        'detail',
-        'additionalTextEdits',
-    }
-}
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local lsp_installer = require('nvim-lsp-installer')
 
