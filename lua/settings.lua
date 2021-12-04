@@ -1,7 +1,7 @@
 vim.cmd('syntax enable')        -- Enable syntax highlighting
 
 -- Completion
-vim.opt.completeopt = "menuone,noselect"
+vim.opt.completeopt = "menu,menuone,noselect"
 
 -- Indentation
 local indent = 4

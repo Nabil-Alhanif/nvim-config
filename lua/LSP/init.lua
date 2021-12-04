@@ -12,6 +12,16 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     }
 }
 
+local lsp_installer = require('nvim-lsp-installer')
+
+lsp_installer.on_server_ready(function(server)
+    local config = require('LSP/'..server.name..'-lsp')
+    config.capabilities = capabilities
+
+    server:setup(config)
+end)
+
+--[[
 local function setup_servers()
     require('lspinstall').setup()
 
@@ -32,3 +42,4 @@ require('lspinstall').post_install_hook = function ()
     setup_servers()
     vim.cmd('bufdo e')
 end
+]]

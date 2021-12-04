@@ -67,14 +67,6 @@ noremap('n', '<Space>j', '<C-w>j')
 noremap('n', '<Space>k', '<C-w>k')
 noremap('n', '<Space>l', '<C-w>l')
 
--- -----------------------
--- | Nvim-Compe Mappings |
--- -----------------------
-
-noremap('i', '<C-Space>', 'compe#complete()', {silent = true, expr = true})
-noremap('i', '<CR>', 'compe#confirm("<CR>")', {silent = true, expr = true})
-noremap('i', '<C-e>', 'compe#close("<C-e>")', {silent = true, expr = true})
-
 -- ----------------------
 -- | Nvim-Tree Mappings |
 -- ----------------------
