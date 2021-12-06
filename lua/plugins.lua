@@ -43,11 +43,24 @@ return require('packer').startup(function(use)
     use 'jakewvincent/texmagic.nvim'   -- Latex stuff
 
     -- Auto Complete
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-buffer',    -- Buffer as completion source
+            'hrsh7th/cmp-calc',      -- Math calculation as completion source
+            'hrsh7th/cmp-cmdline',   -- Command line as completion source
+            'hrsh7th/cmp-nvim-lsp',  -- LSP as completion source
+            'hrsh7th/cmp-nvim-lua',  -- Lua as completion source
+            'hrsh7th/cmp-path',      -- system path as completion source
+
+            -- This two isn't that important for programming,
+            -- but as I'll be using neovim as my default text editor,
+            -- and thus will be using it a lot for school work,
+            -- I decide to include it as well.
+            'f3fora/cmp-spell',      -- Spelling
+            'octaltree/cmp-look',    -- English word recommendation
+        }
+    }
 
     -- Snippet
     use 'hrsh7th/vim-vsnip'

@@ -1,3 +1,6 @@
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }
+
 local cmp = require('cmp')
 
 cmp.setup({
@@ -19,29 +22,20 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
-            { name = 'nvim_lua' },
-            { name = 'vsnip' }, -- For vsnip users.
-        }, {
-            { name = 'buffer' },
-    }),
-    completion = {
-        autocomplete = false
-    },
-})
-
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {
-    sources = {
-        { name = 'buffer' }
-    }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({
-            { name = 'path' }
-        }, {
-            { name = 'cmdline' }
+        { name = 'buffer' },
+        { name = 'calc' },
+        { name = 'cmdline' },
+        { name = 'look',
+            keyword_length = 2,
+            option = {
+                convert_case = true,
+                loud = true
+            },
+        },
+        { name = 'nvim_lsp' },
+        { name = 'nvim_lua' },
+        { name = 'path' },
+        { name = 'spell' },
+        { name = 'vsnip' }, -- For vsnip users.
     })
 })
