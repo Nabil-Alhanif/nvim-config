@@ -51,7 +51,8 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-cmdline',   -- Command line as completion source
             'hrsh7th/cmp-nvim-lsp',  -- LSP as completion source
             'hrsh7th/cmp-nvim-lua',  -- Lua as completion source
-            'hrsh7th/cmp-path',      -- system path as completion source
+            'hrsh7th/cmp-path',      -- System path as completion source
+            'hrsh7th/cmp-vsnip',     -- Vsnip as completion source
 
             -- This two isn't that important for programming,
             -- but as I'll be using neovim as my default text editor,
@@ -64,7 +65,6 @@ return require('packer').startup(function(use)
 
     -- Snippet
     use 'hrsh7th/vim-vsnip'
-    use 'hrsh7th/cmp-vsnip'
 
     -- Lua functions
     use 'nvim-lua/plenary.nvim'

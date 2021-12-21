@@ -19,23 +19,27 @@ cmp.setup({
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
         }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = cmp.config.sources({
-        { name = 'buffer' },
-        { name = 'calc' },
-        { name = 'cmdline' },
-        { name = 'look',
+        { name = 'buffer' },     -- Buffer as completion source
+        { name = 'nvim_lsp' },   -- LSP as completion source
+        { name = 'nvim_lua' },   -- Lua as completion source
+        { name = 'path' },       -- System path as completion source
+        { name = 'vsnip' },      -- Vsnip as completion source
+        { name = 'cmdline' },    -- Command line as completion source
+        { name = 'calc' },       -- Math calculation as completion source
+        { name = 'look',         -- English word recommendation
             keyword_length = 2,
             option = {
                 convert_case = true,
                 loud = true
             },
         },
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'path' },
-        { name = 'spell' },
-        { name = 'vsnip' }, -- For vsnip users.
-    })
+        { name = 'spell' },      -- Spelling
+    }),
+    completion = {
+        completeopt = 'menu,menuone,noinsert',
+        --autocomplete = false,
+    }
 })

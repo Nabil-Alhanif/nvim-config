@@ -9,4 +9,7 @@ return {
         -- only relevant when `update_focused_file.update_cwd` is true and `update_focused_file.enable` is true
         ignore_list = {}
     },
+    git = {
+        ignore = false,
+    },
 }

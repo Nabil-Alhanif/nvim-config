@@ -95,16 +95,16 @@ local function mode_color()
 end
 
 -- Left Section
-gls.left[1] = {
+gls.left[0] = {
     rounded_border_logo = {
         provider = function ()
 	        return ''
         end,
-        highlight = {colors.bg_gray, colors.bg},
+        highlight = {colors.bg_gray},
     }
 }
 
-gls.left[2] = {
+gls.left[1] = {
     Arch = {
         provider = function () return '  ' end,
         highlight = {colors.logo_color, colors.bg_gray},
@@ -113,7 +113,7 @@ gls.left[2] = {
     },
 }
 
-gls.left[3] = {
+gls.left[2] = {
     ViMode = {
         provider = function ()
 	        vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color())
@@ -121,28 +121,63 @@ gls.left[3] = {
         end,
         highlight = {colors.fg, colors.bg_light_gray, 'bold'},
         separator = '',
-        separator_highlight = {colors.bg_light_gray, colors.bg},
+        separator_highlight = {colors.bg_light_gray},
     },
 }
 
 -- Mid Section
-gls.mid[1] ={
+gls.mid[0] = {
+    rounded_border_logo_left = {
+        provider = function ()
+	        return ''
+        end,
+        highlight = {colors.bg_light_gray},
+    }
+}
+
+gls.mid[1] = {
+    NewFile = {
+        provider = function() return '[New File]' end,
+        condition = function()
+            -- Basically the opposite of condition.buffer_not_empty
+            -- But using buffer not empty doesn't works, so....
+            if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+                return false
+            end
+            return true
+        end,
+        highlight = {colors.fg, colors.bg_light_gray, 'bold'},
+    },
     FileIcon = {
-        provider = 'FileIcon',
+        provider = {'FileIcon'},
         condition = condition.buffer_not_empty,
-        highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg},
+        highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg_light_gray},
+    },
+    FileName = {
+        provider = 'FileName',
+        condition = condition.buffer_not_empty,
+        highlight = {colors.fg, colors.bg_light_gray, 'bold'},
     },
 }
 
 gls.mid[2] = {
-    FileName = {
-        provider = 'FileName',
-        condition = condition.buffer_not_empty,
-        highlight = {colors.fg, colors.bg},
+    rounded_border_logo_right = {
+        provider = function ()
+	        return ''
+        end,
+        highlight = {colors.bg_light_gray},
     }
 }
 
 -- Right Section
+gls.right[0] = {
+    rounded_border_logo_left = {
+        provider = function ()
+	        return ''
+        end,
+        highlight = {colors.bg_light_gray},
+    }
+}
 gls.right[1] = {
     DiagnosticError = {
         provider = 'DiagnosticError',
@@ -150,13 +185,30 @@ gls.right[1] = {
         highlight = {colors.error_red, colors.bg},
     }
 }
-gls.right[2] = {DiagnosticWarn = {provider = 'DiagnosticWarn', icon = '  ', highlight = {colors.orange, colors.bg}}}
 
-gls.right[3] = {
-    DiagnosticHint = {provider = 'DiagnosticHint', icon = '  ', highlight = {colors.vivid_blue, colors.bg}}
+gls.right[2] = {
+    DiagnosticWarn = {
+        provider = 'DiagnosticWarn',
+        icon = '  ',
+        highlight = {colors.orange, colors.bg}
+    }
 }
 
-gls.right[4] = {DiagnosticInfo = {provider = 'DiagnosticInfo', icon = '  ', highlight = {colors.info_yellow, colors.bg}}}
+gls.right[3] = {
+    DiagnosticHint = {
+        provider = 'DiagnosticHint',
+        icon = '  ',
+        highlight = {colors.vivid_blue, colors.bg}
+    }
+}
+
+gls.right[4] = {
+    DiagnosticInfo = {
+        provider = 'DiagnosticInfo',
+        icon = '  ',
+        highlight = {colors.info_yellow, colors.bg}
+    }
+}
 
 gls.right[5] = {
     ShowLspClient = {
