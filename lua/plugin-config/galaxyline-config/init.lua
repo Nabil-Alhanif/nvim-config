@@ -151,7 +151,7 @@ gls.mid[1] = {
     FileIcon = {
         provider = {'FileIcon'},
         condition = condition.buffer_not_empty,
-        highlight = {require('galaxyline.provider_fileinfo').get_file_icon_color, colors.bg_light_gray},
+        highlight = {require('galaxyline.providers.fileinfo').get_file_icon_color, colors.bg_light_gray},
     },
     FileName = {
         provider = 'FileName',

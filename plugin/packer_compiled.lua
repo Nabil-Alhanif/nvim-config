@@ -117,7 +117,7 @@ _G.packer_plugins = {
   ["galaxyline.nvim"] = {
     loaded = true,
     path = "/home/nabil-alhanif/.local/share/nvim/site/pack/packer/start/galaxyline.nvim",
-    url = "https://github.com/glepnir/galaxyline.nvim"
+    url = "https://github.com/NTBBloodbath/galaxyline.nvim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,

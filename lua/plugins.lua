@@ -42,6 +42,9 @@ return require('packer').startup(function(use)
     use 'williamboman/nvim-lsp-installer'
     use 'jakewvincent/texmagic.nvim'   -- Latex stuff
 
+    -- Snippet
+    use 'hrsh7th/vim-vsnip'
+
     -- Auto Complete
     use {
         'hrsh7th/nvim-cmp',
@@ -63,16 +66,13 @@ return require('packer').startup(function(use)
         }
     }
 
-    -- Snippet
-    use 'hrsh7th/vim-vsnip'
-
     -- Lua functions
     use 'nvim-lua/plenary.nvim'
     use 'famiu/nvim-reload'
 
     -- Status Line
     use {
-        'glepnir/galaxyline.nvim',
+        'NTBBloodbath/galaxyline.nvim',
         branch = 'main',
         -- some optional icons
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
