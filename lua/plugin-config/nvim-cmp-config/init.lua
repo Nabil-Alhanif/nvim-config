@@ -22,8 +22,8 @@ cmp.setup({
         ['<C-CR>'] = cmp.mapping.confirm({ select = true }),
     },
     sources = cmp.config.sources({
-        { name = 'buffer' },     -- Buffer as completion source
         { name = 'nvim_lsp' },   -- LSP as completion source
+        { name = 'buffer' },     -- Buffer as completion source
         { name = 'nvim_lua' },   -- Lua as completion source
         { name = 'path' },       -- System path as completion source
         { name = 'vsnip' },      -- Vsnip as completion source

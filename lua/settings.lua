@@ -30,3 +30,6 @@ vim.opt.splitright    = true    -- Open new split panes to the right
 vim.opt_local.foldmethod = "indent" -- Set folding on indent
 vim.opt.foldenable       = false    -- No fold enable
 vim.opt.foldlevel        = 99       -- IDK
+
+-- Mouse
+vim.opt.mouse = "inv"

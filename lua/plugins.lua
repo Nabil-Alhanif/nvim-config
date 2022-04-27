@@ -65,6 +65,7 @@ return require('packer').startup(function(use)
             'octaltree/cmp-look',    -- English word recommendation
         }
     }
+    use 'b3nj5m1n/kommentary'
 
     -- Lua functions
     use 'nvim-lua/plenary.nvim'
