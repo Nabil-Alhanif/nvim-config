@@ -72,7 +72,7 @@ noremap('n', '<Space>l', '<C-w>l')
 -- ----------------------
 
 -- Use leader + tab to toggle Nvim-Tree
-noremap('n', '<leader><Tab>', ':NvimTreeToggle<CR>')
+noremap('n', '<leader><Tab>', ':NeoTreeFocusToggle<CR>')
 
 -- -------------------
 -- | Rnvimr Mappings |
