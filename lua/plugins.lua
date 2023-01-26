@@ -13,8 +13,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 	{
-		'nvim-treesitter/nvim-treesitter',
-		build = ':TSUpdate',
+		'nvim-lua/plenary.nvim',
+	},
+	{
+		'catppuccin/nvim',
+		name = 'catppuccin',
+		config = function()
+			require('plugins.catppuccin').setup()
+		end,
 	},
 	{
 		'nvim-neo-tree/neo-tree.nvim',
@@ -24,15 +30,22 @@ require('lazy').setup({
 			'nvim-tree/nvim-web-devicons',
 			'MunifTanjim/nui.nvim',
 		},
+		config = function()
+			require('plugins.neo-tree').setup()
+		end,
 	},
 	{
-		'nvim-lua/plenary.nvim',
+		'folke/which-key.nvim',
+		config = function()
+			require('plugins.which-key').setup()
+		end,
 	},
 	{
-		'christianchiarulli/nvcode-color-schemes.vim',
-	},
-	{
-		'folke/tokyonight.nvim',
+		'nvim-treesitter/nvim-treesitter',
+		build = ':TSUpdate',
+		config = function()
+			require('plugins.nvim-treesitter').setup()
+		end,
 	},
     {
         'neovim/nvim-lspconfig',
