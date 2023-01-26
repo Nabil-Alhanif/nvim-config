@@ -2,17 +2,22 @@
 -- | Language Server Protocol |
 -- ----------------------------
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+require('mason').setup()
+require('mason-lspconfig').setup()
 
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-local lsp_servers = lsp_installer_servers.get_installed_servers()
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+--local lsp_installer_servers = require('nvim-lsp-installer.servers')
+local lsp_servers = require('mason-lspconfig').get_installed_servers()
 
 for _, server in pairs(lsp_servers) do
-    local config = require('LSP/'..server.name..'-lsp')
+    local config = require('LSP/'..server..'-lsp')
     config.capabilities = capabilities
 
-    server:setup(config)
+    require('lspconfig')[server].setup(config)
+    --server:setup(config)
 end
 
 --[[

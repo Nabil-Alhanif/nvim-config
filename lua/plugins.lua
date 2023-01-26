@@ -23,10 +23,10 @@ return require('packer').startup(function(use)
 
     -- Explorer
     use {
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons',
+        'nvim-tree/nvim-tree.lua',
+        requires = 'nvim-tree/nvim-web-devicons',
     }
-    use 'kyazdani42/nvim-web-devicons' -- Icons for nvim-tree
+    use 'nvim-tree/nvim-web-devicons' -- Icons for nvim-tree
 
     use 'kevinhwang91/rnvimr'          -- Neovim integration with ranger
 
@@ -39,7 +39,8 @@ return require('packer').startup(function(use)
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'jakewvincent/texmagic.nvim'   -- Latex stuff
 
     -- Snippet
@@ -76,7 +77,7 @@ return require('packer').startup(function(use)
         'NTBBloodbath/galaxyline.nvim',
         branch = 'main',
         -- some optional icons
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+        requires = {'nvim-tree/nvim-web-devicons', opt = true}
     }
 
     -- Theme
