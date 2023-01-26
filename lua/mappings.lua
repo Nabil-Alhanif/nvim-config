@@ -18,85 +18,37 @@
 -- ║:tmap    ║:tnoremap   ║:tunmap  ║ Terminal-Job                            ║
 -- ╚═════════╩════════════╩═════════╩═════════════════════════════════════════╝
 
--- How to add mappings:
--- vim.api.nvim_set_keymap('mode', 'new mapping', 'stuff to do', 'options')
-
--- Example:
--- nnoremap <Space>h <C-w>h
--- vim.api.nvim_set_keymap('mode',  '<Space>h', '<C-w>h', {noremap = true})
-
 vim.g.mapleader = ' '
 
--- Helper function for mapping
-require('modules/keymap')
+local keymap = vim.keymap.set
+local default_opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true}
 
--- ----------------------
--- | Clipboard Mappings |
--- ----------------------
+-- LSP
+keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
+keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', default_opts)
+keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', default_opts)
+keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', default_opts)
+keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', default_opts)
+keymap('n', '<space>ld', '<cmd>lua vim.lsp.buf.signature_help()<CR>', default_opts)
+keymap('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', default_opts)
+keymap('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', default_opts)
 
-noremap('v', '<leader>y', '"+y')
-noremap('v', '<leader>Y', '"+y')
-
--- ----------------
--- | Key Mappings |
--- ----------------
-
--- Use leader + vr to reload vim config
-noremap('n', '<leader>vr', ':Reload<CR>')
-
--- ----------------
--- | LSP Mappings |
--- ----------------
-
-noremap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {silent = true})
-noremap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {silent = true})
-noremap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', {silent = true})
-noremap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {silent = true})
-noremap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {silent = true})
-noremap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', {silent = true})
-noremap('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {silent = true})
-noremap('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {silent = true})
-
--- ------------
--- | Movement |
--- ------------
-
--- Use space + hjkl to move between panels
-noremap('n', '<Space>h', '<C-w>h')
-noremap('n', '<Space>j', '<C-w>j')
-noremap('n', '<Space>k', '<C-w>k')
-noremap('n', '<Space>l', '<C-w>l')
-
--- ----------------------
--- | Nvim-Tree Mappings |
--- ----------------------
+-- Movements
+keymap('n', '<C-h>', '<C-w><C-h>', default_opts)
+keymap('n', '<C-j>', '<C-w><C-j>', default_opts)
+keymap('n', '<C-k>', '<C-w><C-k>', default_opts)
+keymap('n', '<C-l>', '<C-w><C-l>', default_opts)
 
 -- Use leader + tab to toggle Nvim-Tree
-noremap('n', '<leader><Tab>', ':NeoTreeFocusToggle<CR>')
+keymap({'n', 'v'}, '<leader>e', ':NeoTreeFocusToggle<CR>')
 
--- -------------------
--- | Rnvimr Mappings |
--- -------------------
+-- Cancel search highlighting witih ESC
+keymap('n', '<ESC>', ':nohlsearch<Bar>:echo<CR>', default_opts)
 
-noremap('t', ',i', '<C-\\><C-n>:RnvimrResize<CR>', {silent = true})
-noremap('n', ',r', ':RnvimrToggle<CR>', {silent = true})
-noremap('t', ',r', '<C-\\><C-n>:RnvimrToggle<CR>', {silent = true})
-
--- ----------------------
--- | Telescope Mappings |
--- ----------------------
-
-noremap('n', 'ff', '<cmd>Telescope find_files<CR>', {silent = true});
-noremap('n', 'fg', '<cmd>Telescope live_grep<cr>', {silent = true});
-noremap('n', 'fb', '<cmd>Telescope buffers<cr>', {silent = true});
-noremap('n', 'fh', '<cmd>Telescope help_tags<cr>', {silent = true});
-
--- ---------------------
--- | Terminal Mappings |
--- ---------------------
-
-noremap('t', '<Esc>', '<C-\\><C-n>')
+-- Terminals
+keymap('t', '<Esc>', '<C-\\><C-n>', default_opts)
 
 vim.cmd([[au BufEnter * if &buftype == 'terminal' | :startinsert | endif]])
 
-noremap('n', '<leader>n', ':split term://$SHELL <BAR> :resize 15<CR>')
+keymap('n', '<leader>n', ':split term://$SHELL <BAR> :resize 15<CR>', default_opts)
