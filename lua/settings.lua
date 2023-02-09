@@ -41,6 +41,4 @@ function M.setup()
 	M.set(default)
 end
 
-vim.cmd("com -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod")
-
 return M

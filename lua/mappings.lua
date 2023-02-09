@@ -21,8 +21,6 @@
 local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true}
 
-vim.cmd([[au BufEnter * if &buftype == 'terminal' | :startinsert | endif]])
-
 local mode_adapters = {
 	insert_mode = 'i',
 	normal_mode = 'n',

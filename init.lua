@@ -12,3 +12,6 @@ require('lsp'):init()
 
 -- Mappings
 require('mappings').load()
+
+-- Autocmd
+require('autocmd').setup()
