@@ -1,4 +1,4 @@
-return {
+local M = {
     settings = {
         Lua = {
             runtime = {
@@ -24,3 +24,5 @@ return {
         },
     },
 }
+
+return M;

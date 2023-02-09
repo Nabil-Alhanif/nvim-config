@@ -10,11 +10,7 @@ function M.setup()
 		},
 	}
 
-	local mappings = {
-	}
-
 	wk.setup(opts)
-	wk.register(mappings)
 end
 
 return M

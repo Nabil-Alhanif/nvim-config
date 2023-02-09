@@ -18,37 +18,84 @@
 -- ║:tmap    ║:tnoremap   ║:tunmap  ║ Terminal-Job                            ║
 -- ╚═════════╩════════════╩═════════╩═════════════════════════════════════════╝
 
-vim.g.mapleader = ' '
-
-local keymap = vim.keymap.set
 local default_opts = { noremap = true, silent = true }
 local expr_opts = { noremap = true, expr = true, silent = true}
 
--- LSP
-keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', default_opts)
-keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', default_opts)
-keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', default_opts)
-keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', default_opts)
-keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', default_opts)
-keymap('n', '<space>ld', '<cmd>lua vim.lsp.buf.signature_help()<CR>', default_opts)
-keymap('n', '<C-n>', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', default_opts)
-keymap('n', '<C-p>', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', default_opts)
-
--- Movements
-keymap('n', '<C-h>', '<C-w><C-h>', default_opts)
-keymap('n', '<C-j>', '<C-w><C-j>', default_opts)
-keymap('n', '<C-k>', '<C-w><C-k>', default_opts)
-keymap('n', '<C-l>', '<C-w><C-l>', default_opts)
-
--- Use leader + tab to toggle Nvim-Tree
-keymap({'n', 'v'}, '<leader>e', ':NeoTreeFocusToggle<CR>')
-
--- Cancel search highlighting witih ESC
-keymap('n', '<ESC>', ':nohlsearch<Bar>:echo<CR>', default_opts)
-
--- Terminals
-keymap('t', '<Esc>', '<C-\\><C-n>', default_opts)
-
 vim.cmd([[au BufEnter * if &buftype == 'terminal' | :startinsert | endif]])
 
-keymap('n', '<leader>n', ':split term://$SHELL <BAR> :resize 15<CR>', default_opts)
+local mode_adapters = {
+	insert_mode = 'i',
+	normal_mode = 'n',
+	term_mode = 't',
+	visual_mode = 'v',
+	visual_block_mode = 'x',
+	command_mode = 'c',
+	operator_pending_mode = 'o',
+}
+
+local defaults = {
+	insert_mode = {},
+	normal_mode = {
+		['gd'] = '<cmd>lua vim.lsp.buf.definition()<CR>',
+		['gD'] = '<cmd>lua vim.lsp.buf.declaration()<CR>',
+		['gr'] = '<cmd>lua vim.lsp.buf.references()<CR>',
+		['gi'] = '<cmd>lua vim.lsp.buf.implementation()<CR>',
+		['K'] = '<cmd>lua vim.lsp.buf.hover()<CR>',
+		['<space>ld'] = '<cmd>lua vim.lsp.buf_signature_help()<CR>',
+		['<C-n>'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
+		['<C-p>'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
+
+		-- Movements
+		['<C-h>'] = '<C-w><C-h>',
+		['<C-j>'] = '<C-w><C-j>',
+		['<C-k>'] = '<C-w><C-k>',
+		['<C-l>'] = '<C-w><C-l>',
+
+		-- Toggle NeoTree
+		['<leader>e'] = ':NeoTreeFocusToggle<CR>',
+
+		-- Cancel search highlighting
+		['<Esc>'] = ':nohlsearch<Bar>:echo<CR>',
+
+		-- Open new terminal
+		['<leader>n'] = ':split term://$SHELL <Bar> :resize 15<CR>',
+	},
+	term_mode = {
+		['<Esc>'] = '<C-\\><C-n>',
+	},
+	visual_mode = {
+		-- Copy to system clipboard
+		['<leader>Y'] = '"+y',
+	},
+	visual_block_mode = {},
+	command_mode = {},
+	operator_pending_mode = {},
+}
+
+local M = {}
+
+function M.set_keymap(mode, key, val)
+	local opt = default_opts
+	if type(val) == 'table' then
+		opt = val[2]
+		val = val[1]
+	end
+	if val then
+		vim.keymap.set(mode, key, val, opt)
+	end
+end
+
+function M.load_mode(mode, keymaps)
+	mode = mode_adapters[mode] or mode
+	for k, v in pairs(keymaps) do
+		M.set_keymap(mode, k, v)
+	end
+end
+
+function M.load()
+	for mode, mapping in pairs(defaults) do
+		M.load_mode(mode, mapping)
+	end
+end
+
+return M

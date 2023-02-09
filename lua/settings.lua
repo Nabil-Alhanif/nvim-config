@@ -1,33 +1,46 @@
-vim.cmd('syntax enable')        -- Enable syntax highlighting
-
--- Completion
-vim.opt.completeopt = "menu,menuone,noselect"
-
--- Indentation
 local indent = 4
-vim.opt.shiftwidth    = indent  -- Set indent size
-vim.opt.tabstop       = indent  -- Set tab width
-vim.opt.autoindent    = true    -- Auto indentation
-vim.opt.smartindent   = true    -- IDK, dianya pinter mungkin
-vim.opt.smarttab      = true
+local default = {
+	opt = {
+		shiftwidth = indent,
+		tabstop = indent,
+		autoindent = true,
+		smartindent = true,
+		smarttab = true,
 
--- Search
-vim.opt.ignorecase    = true
-vim.opt.smartcase     = true
-vim.opt.hlsearch      = true    -- Highlight search
-vim.opt.incsearch     = true    -- Search as you type
+		ignorecase = true,
+		smartcase = true,
+		hlsearch = true,
+		incsearch = true,
 
--- TUI settings
-vim.opt.showcmd       = true    -- Show current command
-vim.opt.termguicolors = true    -- True color support
-vim.opt.number        = true    -- Show line number
-vim.opt.wrap          = true    -- Show long line as multiple line
+		showcmd = true,
+		termguicolors = true,
+		number = true,
+		wrap = true,
 
--- Split panes
-vim.opt.splitbelow    = true    -- Open new split panes to the bottom
-vim.opt.splitright    = true    -- Open new split panes to the right
+		splitbelow = true,
+		splitright = true,
 
--- Mouse
-vim.opt.mouse = "inv"
+		mouse = 'inv',
+	},
+	g = {
+		mapleader = ' ',
+	},
+}
+
+local M = {}
+
+function M.set(options)
+	for scope, table in pairs(options) do
+		for setting, value in pairs(table) do
+			vim[scope][setting] = value
+		end
+	end
+end
+
+function M.setup()
+	M.set(default)
+end
 
 vim.cmd("com -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod")
+
+return M

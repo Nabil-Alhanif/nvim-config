@@ -1,12 +1,14 @@
-vim.cmd([[runtime! archlinux.vim]])
-
-require('settings')
-
 -- Plugins
-require('plugins')
+local plugins = require('plugins')
+local plugin_loader = require('plugin-loader')
+plugin_loader:init()
+plugin_loader.load(plugins)
 
--- Settings
-require('mappings')
+-- Setings
+require('settings').setup()
 
 -- LSP
-require('lsp')
+require('lsp'):init()
+
+-- Mappings
+require('mappings').load()
