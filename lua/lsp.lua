@@ -8,6 +8,8 @@ function M:init()
 	require('mason').setup()
 	require('mason-lspconfig').setup()
 
+	local lspconfig = require('lspconfig')
+
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	local lsp_servers = require('mason-lspconfig').get_installed_servers()
@@ -16,7 +18,7 @@ function M:init()
 		local config = require('lsp/'..server..'-lsp')
 		config.capabilities = capabilities
 
-		require('lspconfig')[server].setup(config)
+		lspconfig[server].setup(config)
 	end
 end
 
