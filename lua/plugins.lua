@@ -65,6 +65,12 @@ local M = {
 			'saadparwaiz1/cmp_luasnip', -- Integration with nvim-cmp
 		},
 	},
+	{ -- Notification
+		'rcarriga/nvim-notify',
+		config = function()
+			require('plugins.nvim-notify').setup()
+		end,
+	},
 }
 
 return M
