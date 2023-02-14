@@ -46,8 +46,13 @@ local M = {
 	{ -- Code comletion
 		'hrsh7th/nvim-cmp',
 		dependencies = {
-			'L3MON4D3/LuaSnip', -- For snippet engine
-			'hrsh7th/cmp-nvim-lsp',
+			'L3MON4D3/LuaSnip',      -- For snippet engine
+			'hrsh7th/cmp-buffer',    -- Buffer as completion source
+			'hrsh7th/cmp-calc',      -- Math calculation as completion source
+			'hrsh7th/cmp-cmdline',   -- Command line as completion source
+			'hrsh7th/cmp-nvim-lsp',  -- LSP as completion source
+			'hrsh7th/cmp-nvim-lua',  -- Lua as completion source
+			'hrsh7th/cmp-path',      -- System path as completion source
 		},
 		config = function()
 			require('plugins.nvim-cmp').setup()

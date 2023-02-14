@@ -1,6 +1,8 @@
 local indent = 4
 local default = {
 	opt = {
+		completeopt = 'menu,menuone,noinsert',
+
 		shiftwidth = indent,
 		tabstop = indent,
 		autoindent = true,
