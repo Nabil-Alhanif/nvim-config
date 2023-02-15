@@ -4,7 +4,7 @@ function M.setup()
 	vim.g.coq_settings = {
 		keymap = {
 			bigger_preview = nil,
-			jump_to_mark = '<C-t>',
+			jump_to_mark = '<C-y>',
 		},
 	}
 

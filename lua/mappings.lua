@@ -36,8 +36,8 @@ local defaults = {
 	normal_mode = {
 		-- LSP
 		-- Some mappings are defined in lua/lsp.lua
-		['<C-n>'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-		['<C-p>'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
+		['<C-n>'] = ':lua vim.lsp.diagnostic.goto_next()<CR>',
+		['<C-p>'] = ':lua vim.lsp.diagnostic.goto_prev()<CR>',
 
 		-- Movements
 		['<C-h>'] = '<C-w><C-h>',
@@ -49,10 +49,16 @@ local defaults = {
 		['<leader>e'] = ':NeoTreeFocusToggle<CR>',
 
 		-- Cancel search highlighting
-		['<Esc>'] = ':nohlsearch<Bar>:echo<CR>',
+		['<Esc>'] = ':nohlsearch | :echo<CR>',
+
+		-- Telescope
+		['<leader>ff'] = ':Telescope find_files<CR>',
+		['<leader>fg'] = ':Telescope live_grep<CR>',
+		['<leader>fb'] = ':Telescope buffers<CR>',
+		['<leader>fh'] = ':Telescope help_tags<CR>',
 
 		-- Open new terminal
-		['<leader>n'] = ':split term://$SHELL <Bar> :resize 15<CR>',
+		['<leader>n'] = ':split term://$SHELL | :resize 15<CR>',
 	},
 	term_mode = {
 		['<Esc>'] = '<C-\\><C-n>',

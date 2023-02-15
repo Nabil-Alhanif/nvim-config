@@ -43,7 +43,6 @@ local M = {
             'williamboman/mason-lspconfig.nvim',
         },
     },
-	--[[
 	{ -- Code comletion
 		'hrsh7th/nvim-cmp',
 		dependencies = {
@@ -66,23 +65,17 @@ local M = {
 			'saadparwaiz1/cmp_luasnip', -- Integration with nvim-cmp
 		},
 	},
-	]]
-	{ -- Snippet and completion engine
-		'ms-jpq/coq_nvim',
-		dependencies = {
-			'ms-jpq/coq.artifacts',
-			'ms-jpq/coq.thirdparty',
-		},
-		build = ':COQdeps',
-		config = function()
-			require('plugins.nvim-coq').setup()
-		end,
-	},
 	{ -- Notification
 		'rcarriga/nvim-notify',
 		config = function()
 			require('plugins.nvim-notify').setup()
 		end,
+	},
+	{
+		'nvim-telescope/telescope.nvim',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+		},
 	},
 }
 
