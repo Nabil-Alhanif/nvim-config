@@ -2,6 +2,17 @@
 -- | Language Server Protocol |
 -- ----------------------------
 
+local on_attach = function(client, bufnr)
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+	vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', bufopts)
+	vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', bufopts)
+	vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', bufopts)
+	vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', bufopts)
+	vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', bufopts)
+	vim.keymap.set('n', '<space>ld', '<cmd>lua vim.lsp.buf.signature_help()<CR>', bufopts)
+end
+
 local M = {}
 
 M.title = 'LSP Initialisation'
@@ -11,27 +22,32 @@ function M:init()
 	require('mason-lspconfig').setup()
 
 	local lspconfig = require('lspconfig')
+	local coq = require('coq')
 
+	--local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	local lsp_servers = require('mason-lspconfig').get_installed_servers()
 
 	for _, server in pairs(lsp_servers) do
-		local config = self:get_config('lsp.'..server..'-lsp')
+		local config = self:get_config(server)
+		config.on_attach = on_attach
 		config.capabilities = capabilities
 
-		lspconfig[server].setup(config)
+		lspconfig[server].setup(coq.lsp_ensure_capabilities(config))
 	end
 end
 
-function M:get_config(module)
+function M:get_config(server)
+	local server_conf = 'lsp.'..server..'-lsp'
+
 	local config = nil
-	local config_path = vim.fn.stdpath('config')..'/lua/'..module:gsub('%.', '/')..'.lua'
+	local config_path = vim.fn.stdpath('config')..'/lua/'..server_conf:gsub('%.', '/')..'.lua'
 
 	if vim.fn.filereadable(config_path) == 1 then
-		config = require(module)
+		config = require(server_conf)
 	else
-		vim.notify('Configuration for '..module..' doesn\'t exist!\n\nCreating a new config file...', 'warn', {
+		vim.notify('Configuration for '..server..' doesn\'t exist!\n\nCreating a new config file...', 'warn', {
 			title = self.title,
 			on_open = function()
 				local file, error = assert(io.open(config_path, 'w'))

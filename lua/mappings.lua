@@ -34,12 +34,8 @@ local mode_adapters = {
 local defaults = {
 	insert_mode = {},
 	normal_mode = {
-		['gd'] = '<cmd>lua vim.lsp.buf.definition()<CR>',
-		['gD'] = '<cmd>lua vim.lsp.buf.declaration()<CR>',
-		['gr'] = '<cmd>lua vim.lsp.buf.references()<CR>',
-		['gi'] = '<cmd>lua vim.lsp.buf.implementation()<CR>',
-		['K'] = '<cmd>lua vim.lsp.buf.hover()<CR>',
-		['<space>ld'] = '<cmd>lua vim.lsp.buf_signature_help()<CR>',
+		-- LSP
+		-- Some mappings are defined in lua/lsp.lua
 		['<C-n>'] = '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
 		['<C-p>'] = '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
 
