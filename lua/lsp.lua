@@ -24,21 +24,23 @@ function M:init()
 	require('mason-lspconfig').setup()
 
 	local lspconfig = require('lspconfig')
-	--local coq = require('coq')
+	local coq = require('coq')
 
-	local capabilities = require('cmp_nvim_lsp').default_capabilities()
-	--local capabilities = vim.lsp.protocol.make_client_capabilities()
+	--local capabilities = require('cmp_nvim_lsp').default_capabilities()
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	local lsp_servers = require('mason-lspconfig').get_installed_servers()
-	lsp_servers = vim.tbl_extend('force', lsp_servers, custom_server)
+	for i = 1, #custom_server do
+		lsp_servers[#lsp_servers + i] = custom_server[i]
+	end
 
 	for _, server in pairs(lsp_servers) do
 		local config = self:get_config(server)
 		config.on_attach = on_attach
 		config.capabilities = capabilities
 
-		--lspconfig[server].setup(coq.lsp_ensure_capabilities(config))
-		lspconfig[server].setup(config)
+		lspconfig[server].setup(coq.lsp_ensure_capabilities(config))
+		--lspconfig[server].setup(config)
 	end
 end
 

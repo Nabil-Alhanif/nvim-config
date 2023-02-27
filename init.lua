@@ -4,6 +4,8 @@ local plugin_loader = require('plugin-loader')
 plugin_loader:init()
 plugin_loader.load(plugins)
 
+vim.cmd(':COQnow -s')
+
 -- Setings
 require('settings').setup()
 

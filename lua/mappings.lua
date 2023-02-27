@@ -58,7 +58,9 @@ local defaults = {
 		['<leader>fh'] = ':Telescope help_tags<CR>',
 
 		-- Open new terminal
-		['<leader>n'] = ':split term://$SHELL | :resize 15<CR>',
+		--['<leader>n'] = ':split term://$SHELL | :resize 15<CR>',
+		['<leader>n'] = ':ToggleTerm size=15 direction=horizontal<CR>',
+		['<C-t>']     = ':ToggleTerm direction=float<CR>',
 	},
 	term_mode = {
 		['<Esc>'] = '<C-\\><C-n>',
