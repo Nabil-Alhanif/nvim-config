@@ -56,6 +56,9 @@ local defaults = {
 		['<leader>fg'] = ':Telescope live_grep<CR>',
 		['<leader>fb'] = ':Telescope buffers<CR>',
 		['<leader>fh'] = ':Telescope help_tags<CR>',
+		['<leader>fe'] = ':Telescope file_browser<CR>',
+		['<leader>fp'] = ':Telescope project<CR>',
+		['<leader>fs'] = ':Telescope persisted<CR>',
 
 		-- Open new terminal
 		--['<leader>n'] = ':split term://$SHELL | :resize 15<CR>',

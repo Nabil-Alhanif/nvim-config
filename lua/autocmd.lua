@@ -3,7 +3,7 @@ vim.cmd("com -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod")
 local autocmd = {
 	{
 		{ 'BufEnter' },
-		{
+		{ -- Start terminal on insert mode
 			callback = function(args)
 				local buftype = vim.api.nvim_get_option_value('buftype', { buf = args.buf })
 				if buftype == 'terminal' then

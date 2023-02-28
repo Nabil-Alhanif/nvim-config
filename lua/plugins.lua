@@ -1,7 +1,45 @@
 local M = {
+
+	-- } Plugin Manager |
+	{
+		'folke/lazy.nvim',
+	},
+
+
+	-- | Utilities |
 	{ -- Lua functions
 		'nvim-lua/plenary.nvim',
+		lazy = true,
 	},
+	{ -- Which key
+		'folke/which-key.nvim',
+		config = function()
+			require('plugins.which-key').setup()
+		end,
+	},
+	{ -- Toggleterm
+		'akinsho/toggleterm.nvim',
+		version = '*',
+		event = 'VeryLazy',
+		config = function()
+			require('plugins.toggleterm').setup()
+		end,
+	},
+	{ -- Session manager
+		'olimorris/persisted.nvim',
+		config = true,
+	},
+	{ -- Treesitter
+		'nvim-treesitter/nvim-treesitter',
+		build = ':TSUpdate',
+		event = { 'BufReadPost', 'BufNewFile', },
+		config = function()
+			require('plugins.nvim-treesitter').setup()
+		end,
+	},
+
+
+	-- | UI |
 	{ -- Colorscheme
 		'catppuccin/nvim',
 		name = 'catppuccin',
@@ -9,9 +47,34 @@ local M = {
 			require('plugins.catppuccin').setup()
 		end,
 	},
+	{ -- Icons
+		'nvim-tree/nvim-web-devicons',
+		lazy = true,
+	},
+	{ -- Start screen
+		'goolord/alpha-nvim',
+		event = 'VimEnter',
+		dependencies = {
+			'nvim-tree/nvim-web-devicons',
+		},
+		config = function()
+			require('plugins.alpha').setup()
+		end,
+	},
+	{ -- Notification
+		'rcarriga/nvim-notify',
+		config = function()
+			require('plugins.nvim-notify').setup()
+		end,
+	},
+
+
+	-- | File Explorer |
 	{ -- Tree
 		'nvim-neo-tree/neo-tree.nvim',
 		branch = 'v2.x',
+		cmd = { 'NeoTreeFocusToggle', 'NeoTreeFloatToggle', 'NeoTreeShow'},
+		event = 'User DirOpened',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			'nvim-tree/nvim-web-devicons',
@@ -21,19 +84,9 @@ local M = {
 			require('plugins.neo-tree').setup()
 		end,
 	},
-	{ -- Which key
-		'folke/which-key.nvim',
-		config = function()
-			require('plugins.which-key').setup()
-		end,
-	},
-	{ -- Treesitter
-		'nvim-treesitter/nvim-treesitter',
-		build = ':TSUpdate',
-		config = function()
-			require('plugins.nvim-treesitter').setup()
-		end,
-	},
+
+
+	-- | Programming |
     { -- Lspconfig
         'neovim/nvim-lspconfig',
     },
@@ -43,30 +96,6 @@ local M = {
             'williamboman/mason-lspconfig.nvim',
         },
     },
-	--[[
-	{ -- Code comletion
-		'hrsh7th/nvim-cmp',
-		dependencies = {
-			'L3MON4D3/LuaSnip',      -- For snippet engine
-			'hrsh7th/cmp-buffer',    -- Buffer as completion source
-			'hrsh7th/cmp-calc',      -- Math calculation as completion source
-			'hrsh7th/cmp-cmdline',   -- Command line as completion source
-			'hrsh7th/cmp-nvim-lsp',  -- LSP as completion source
-			'hrsh7th/cmp-nvim-lua',  -- Lua as completion source
-			'hrsh7th/cmp-path',      -- System path as completion source
-		},
-		config = function()
-			require('plugins.nvim-cmp').setup()
-		end,
-	},
-	{ -- Snippet engine
-		'L3MON4D3/LuaSnip',
-		build = 'make install_jsregexp',
-		dependencies = {
-			'saadparwaiz1/cmp_luasnip', -- Integration with nvim-cmp
-		},
-	},
-	]]
 	{ -- Code completion & Snippet engine
 		'ms-jpq/coq_nvim',
 		build = ':COQdeps',
@@ -78,24 +107,32 @@ local M = {
 			require('plugins.nvim-coq').setup()
 		end,
 	},
-	{ -- Notification
-		'rcarriga/nvim-notify',
-		config = function()
-			require('plugins.nvim-notify').setup()
-		end,
-	},
+
+
+	-- | Telescope |
 	{ -- Telescope
 		'nvim-telescope/telescope.nvim',
+		cmd = 'Telescope',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+		},
+		config = function()
+			require('plugins.telescope').setup()
+		end,
+	},
+	{ -- File Browser
+		'nvim-telescope/telescope-file-browser.nvim', -- File explorer
+		cmd = 'Telescope file_browser',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 		},
 	},
-	{ -- Toggleterm
-		'akinsho/toggleterm.nvim',
-		version = '*',
-		config = function()
-			require('plugins.toggleterm').setup()
-		end,
+	{ -- Projects
+		'nvim-telescope/telescope-project.nvim', -- Project manager
+		cmd = 'Telescope project',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+		},
 	},
 }
 

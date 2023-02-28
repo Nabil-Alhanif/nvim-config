@@ -26,7 +26,6 @@ function M:init()
 	local lspconfig = require('lspconfig')
 	local coq = require('coq')
 
-	--local capabilities = require('cmp_nvim_lsp').default_capabilities()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	local lsp_servers = require('mason-lspconfig').get_installed_servers()
@@ -40,7 +39,6 @@ function M:init()
 		config.capabilities = capabilities
 
 		lspconfig[server].setup(coq.lsp_ensure_capabilities(config))
-		--lspconfig[server].setup(config)
 	end
 end
 
