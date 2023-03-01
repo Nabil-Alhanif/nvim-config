@@ -9,17 +9,19 @@ function M.setup()
 	local dashboard = require('alpha.themes.dashboard')
 
 	dashboard.section.buttons.val = {
-		dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-		dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
-		dashboard.button("c", "  Configuration", ":e $MYVIMRC<CR>"),
-		dashboard.button("q", "  Quit Neovim", ":qa<CR>"),
+		dashboard.button('f', '  Find file', ':Telescope find_files<CR>'),
+		dashboard.button('e', '  New file', ':ene <BAR> startinsert<CR>'),
+		dashboard.button('p', '  Open project', ':Telescope project<CR>'),
+		dashboard.button('s', '  Open session', ':Telescope persisted<CR>'),
+		dashboard.button('c', '  Configuration', ':e $MYVIMRC<CR>'),
+		dashboard.button('q', '  Quit Neovim', ':qa<CR>'),
 	}
 
 	 local footer = function()
 		-- Number of plugins
 		local total_plugins = require('lazy').stats().count
-		local datetime = os.date "%d-%m-%Y  %H:%M:%S"
-		local plugins_text = "\t" .. total_plugins .. " plugins  " .. datetime
+		local datetime = os.date '%d-%m-%Y  %H:%M:%S'
+		local plugins_text = '\t' .. total_plugins .. ' plugins  ' .. datetime
 
 		-- Quote
 		local fortune = require('alpha.fortune')

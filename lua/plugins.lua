@@ -67,6 +67,12 @@ local M = {
 			require('plugins.nvim-notify').setup()
 		end,
 	},
+	{ -- Indentation guide
+		'lukas-reineke/indent-blankline.nvim',
+		config = function()
+			require('plugins.indent-blankline').setup()
+		end,
+	},
 
 
 	-- | File Explorer |
@@ -124,14 +130,14 @@ local M = {
 		'nvim-telescope/telescope-file-browser.nvim', -- File explorer
 		cmd = 'Telescope file_browser',
 		dependencies = {
-			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
 		},
 	},
 	{ -- Projects
 		'nvim-telescope/telescope-project.nvim', -- Project manager
 		cmd = 'Telescope project',
 		dependencies = {
-			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
 		},
 	},
 }
