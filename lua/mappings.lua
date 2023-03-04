@@ -60,6 +60,8 @@ local defaults = {
 		['<leader>fp'] = ':Telescope project<CR>',
 		['<leader>fs'] = ':Telescope persisted<CR>',
 
+		['<leader>gg'] = ':lua require("utils.lazygit"):toggle()<CR>',
+
 		-- Open new terminal
 		--['<leader>n'] = ':split term://$SHELL | :resize 15<CR>',
 		['<leader>n'] = ':ToggleTerm size=15 direction=horizontal<CR>',

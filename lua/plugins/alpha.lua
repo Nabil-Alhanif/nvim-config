@@ -11,6 +11,7 @@ function M.setup()
 	dashboard.section.buttons.val = {
 		dashboard.button('f', '  Find file', ':Telescope find_files<CR>'),
 		dashboard.button('e', '  New file', ':ene <BAR> startinsert<CR>'),
+		dashboard.button('b', '  File browser', ':Telescope file_browser<CR>'),
 		dashboard.button('p', '  Open project', ':Telescope project<CR>'),
 		dashboard.button('s', '  Open session', ':Telescope persisted<CR>'),
 		dashboard.button('c', '  Configuration', ':e $MYVIMRC<CR>'),
