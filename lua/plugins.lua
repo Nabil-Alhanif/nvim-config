@@ -29,10 +29,17 @@ local M = {
 		'olimorris/persisted.nvim',
 		config = true,
 	},
+	{ -- Treesitter Playground
+		'nvim-treesitter/playground',
+		lazy = true,
+	},
 	{ -- Treesitter
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
 		event = { 'BufReadPost', 'BufNewFile', },
+		dependencies = {
+			'nvim-treesitter/playground',
+		},
 		config = function()
 			require('plugins.nvim-treesitter').setup()
 		end,
