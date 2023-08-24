@@ -13,6 +13,17 @@ local autocmd = {
 			end,
 		}
 	},
+	{
+		{ 'BufEnter' },
+		{
+			group = '_buffer',
+			callback = function(args)
+				if vim.bo[args.buf].filetype == 'vue' or vim.bo[args.buf].filetype == 'html' then
+					vim.cmd('setlocal tabstop=2 shiftwidth=2')
+				end
+			end,
+		}
+	},
 }
 
 local M = {}
