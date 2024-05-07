@@ -18,7 +18,7 @@ local autocmd = {
 		{
 			group = '_buffer',
 			callback = function(args)
-				if vim.bo[args.buf].filetype == 'vue' or vim.bo[args.buf].filetype == 'html' then
+				if vim.bo[args.buf].filetype == 'vue' or vim.bo[args.buf].filetype == 'html' or vim.bo[args.buf].filetype == 'js' then
 					vim.cmd('setlocal tabstop=2 shiftwidth=2')
 				end
 			end,
