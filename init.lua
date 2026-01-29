@@ -1,19 +1,19 @@
 -- Plugins
-local plugins = require('plugins')
-local plugin_loader = require('plugin-loader')
+local plugins = require("plugins")
+local plugin_loader = require("plugin-loader")
 plugin_loader:init()
 plugin_loader.load(plugins)
 
-vim.cmd(':COQnow -s')
+vim.cmd(":COQnow -s")
 
 -- Setings
-require('settings').setup()
+require("settings").setup()
 
 -- LSP
-require('lsp'):init()
+require("lsp"):init()
 
 -- Mappings
-require('mappings').load()
+require("mappings").load()
 
 -- Autocmd
-require('autocmd').setup()
+require("autocmd").setup()

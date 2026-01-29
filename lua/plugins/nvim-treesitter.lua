@@ -1,36 +1,21 @@
 local M = {}
 
 function M.setup()
-	local opts = {
-		ensure_installed = { 'lua' },
-		auto_install = true,
-		highlight = {
-			enable = true,
-		},
-		indent = {
-			enable = false,
-		},
-		playground = {
-			enable = true,
-			disable = {},
-			updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-			persist_queries = false, -- Whether the query persists across vim sessions
-			keybindings = {
-				toggle_query_editor = 'o',
-				toggle_hl_groups = 'i',
-				toggle_injected_languages = 't',
-				toggle_anonymous_nodes = 'a',
-				toggle_language_display = 'I',
-				focus_language = 'f',
-				unfocus_language = 'F',
-				update = 'R',
-				goto_node = '<cr>',
-				show_help = '?',
-			},
-		}
-	}
+    -- Change: use 'nvim-treesitter' directly instead of '.configs'
+    local ts = require('nvim-treesitter')
 
-	require('nvim-treesitter.configs').setup(opts)
+    -- In the new v1.0+ version, configuration is handled differently.
+    -- If you want to keep it simple and similar to before:
+    ts.setup({
+        ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+        auto_install = true,
+        highlight = {
+            enable = true,
+        },
+        indent = {
+            enable = true,
+        },
+    })
 end
 
 return M
