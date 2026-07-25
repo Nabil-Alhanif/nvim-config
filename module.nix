@@ -21,6 +21,8 @@ inputs:
 
 	config.settings.config_directory = ./.;
 
+	config.env.LD_LIBRARY_PATH = lib.mkOverride 500 "${lib.getOutput "out" pkgs.sqlite}/lib";
+
 	config.specs.general = {
 		runtimePkgs = with pkgs; [
 			# LSP servers
@@ -42,6 +44,8 @@ inputs:
 			# Tools
 			lazygit
 			tree-sitter
+			# Required by telescope-zotero (sqlite.lua needs libsqlite3.so)
+			sqlite
 		];
 		data = let vp = pkgs.vimPlugins; in [
 			vp."catppuccin-nvim"

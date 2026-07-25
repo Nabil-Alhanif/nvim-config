@@ -64,6 +64,10 @@ local defaults = {
         ['<leader>fe'] = '<cmd>Telescope file_browser<cr>',
         ['<leader>fp'] = '<cmd>Telescope project<cr>',
         ['<leader>fs'] = '<cmd>Telescope persisted<cr>',
+        ['<leader>fz'] = '<cmd>Telescope zotero<cr>',
+        ['<leader>f.'] = '<cmd>Telescope oldfiles<cr>',
+        ['<leader>fc'] = '<cmd>Telescope commands<cr>',
+        ['<leader>fk'] = '<cmd>Telescope keymaps<cr>',
 
         -- --- Git ---
         ['<leader>gg'] = function() require("utils.lazygit"):toggle() end,
