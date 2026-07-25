@@ -1,11 +1,6 @@
--- ----------------------------
--- | Language Server Protocol |
--- ----------------------------
-
 local M = {}
+local initialized = false
 
--- Modern Autocmd for Keymaps (The 0.11+ way)
--- We use an autocmd instead of a function passed to setup
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
         local bufnr = args.buf
@@ -19,30 +14,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 function M:init()
+    if initialized then return end
+    initialized = true
+
     require('mason').setup()
     require('mason-lspconfig').setup()
 
-    -- In 0.11+, we use the new core configuration system
-    -- This replaces the old lspconfig[server].setup() loops
-    local lsp_config = vim.lsp.config
     local mason_lspconfig = require('mason-lspconfig')
-
-    -- Get all servers Mason has installed
     local installed_servers = mason_lspconfig.get_installed_servers()
 
     for _, server_name in ipairs(installed_servers) do
-        -- 1. Fetch any local custom settings from your lua/lsp/ folder
         local custom_opts = self:get_config(server_name)
-
-        -- 2. Define the declarative config
-        -- Instead of .setup(), we add to the vim.lsp.config table
-        lsp_config[server_name] = vim.tbl_deep_extend("force", {
-            cmd = { server_name, "--stdio" }, -- Default CMD, masonry usually handles pathing
-            filetypes = {},                  -- Core will infer these from the server
+        local config = vim.tbl_deep_extend("force", {
+            cmd = { server_name, "--stdio" },
+            filetypes = {},
             root_markers = { ".git", "package.json", "pyproject.toml" },
         }, custom_opts)
 
-        -- 3. Enable the server
+        vim.lsp.config(server_name, config)
         vim.lsp.enable(server_name)
     end
 end

@@ -91,17 +91,27 @@ local M = {
     },
 
     -- | Programming |
-    { -- Modern LSP (0.11+)
+    { -- Modern LSP (0.11+) + COQ completion
         "neovim/nvim-lspconfig",
+        lazy = false,
         dependencies = {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
+            {
+                "ms-jpq/coq_nvim",
+                branch = "coq",
+                build = ":COQdeps",
+                dependencies = {
+                    "ms-jpq/coq.artifacts",
+                    "ms-jpq/coq.thirdparty",
+                },
+            },
         },
-        -- We no longer call .setup() in a loop; 
-        -- logic should be moved to your lsp init or here
+        init = function()
+            require("plugins.nvim-coq").setup()
+        end,
         config = function()
-             -- Reference your new lsp.lua file's init function here
-             require("lsp").init()
+            require("lsp"):init()
         end,
     },
     { -- Formatter
@@ -110,17 +120,6 @@ local M = {
         cmd = { "ConformInfo" },
         config = function()
             require("plugins.conform").setup()
-        end,
-    },
-	{ -- Code completion & Snippet engine
-        "ms-jpq/coq_nvim",
-        build = ":COQdeps",
-        dependencies = {
-            "ms-jpq/coq.artifacts",
-            "ms-jpq/coq.thirdparty",
-        },
-        config = function()
-            require("plugins.nvim-coq").setup()
         end,
     },
     { -- Indentation engine
@@ -144,6 +143,12 @@ local M = {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-project.nvim",
+            {
+                "jmbuhr/telescope-zotero.nvim",
+                dependencies = {
+                    { "kkharji/sqlite.lua" },
+                },
+            }
         },
         config = function()
             require("plugins.telescope").setup()

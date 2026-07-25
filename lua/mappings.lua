@@ -31,7 +31,10 @@ local mode_adapters = {
 }
 
 local defaults = {
-    insert_mode = {},
+    insert_mode = {
+        -- Snippet jump forward (replaces coq.nvim's removed jump_to_mark)
+        ['<C-y>'] = function() vim.snippet.jump(1) end,
+    },
     normal_mode = {
         -- --- LSP Diagnostics (Modern API) ---
         ['<C-n>'] = vim.diagnostic.goto_next,
