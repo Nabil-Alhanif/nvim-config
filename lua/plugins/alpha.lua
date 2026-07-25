@@ -19,12 +19,10 @@ function M.setup()
 	}
 
 	 local footer = function()
-		-- Number of plugins
-		local total_plugins = require('lazy').stats().count
 		local datetime = os.date '%d-%m-%Y  %H:%M:%S'
-		local plugins_text = '\t' .. total_plugins .. ' plugins  ' .. datetime
+		local pack_count = vim.fn.len(vim.fn.globpath(vim.fn.stdpath('data') .. '/site/pack', '*/*', 0, 1)) or 0
+		local plugins_text = pack_count .. ' plugins  ' .. datetime
 
-		-- Quote
 		local fortune = require('alpha.fortune')
 		local quote = table.concat(fortune(), '\n')
 
