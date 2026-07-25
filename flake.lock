@@ -1,0 +1,82 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1784842214,
+        "narHash": "sha256-5RtCAzg/n1n2Yp0mtDiZzZFJzvqR4jHleWeqD7b5G14=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "91cc1fdf6831e29b6c98768e721a72241f3d0797",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "sqlite-lua": "sqlite-lua",
+        "telescope-zotero": "telescope-zotero",
+        "wrappers": "wrappers"
+      }
+    },
+    "sqlite-lua": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1741959551,
+        "narHash": "sha256-u6Mo+3hg3miqR4EmsoGZhajxiIk24+y5N+YdNW36/JQ=",
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "rev": "50092d60feb242602d7578398c6eb53b4a8ffe7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kkharji",
+        "repo": "sqlite.lua",
+        "type": "github"
+      }
+    },
+    "telescope-zotero": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1779443939,
+        "narHash": "sha256-zbIaTW3v3xvwZW+CUiXXMFxS+ftNq2jLM4TWFjquwgM=",
+        "owner": "jmbuhr",
+        "repo": "telescope-zotero.nvim",
+        "rev": "376728bccfcbce95f59ef028d93bf0a33ee34bc2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jmbuhr",
+        "repo": "telescope-zotero.nvim",
+        "type": "github"
+      }
+    },
+    "wrappers": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1782135443,
+        "narHash": "sha256-vAmbArdCyjqpVW+37aCy/PMBOLIqukUXLQuEKLwUhA4=",
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
+        "rev": "6e7f66fa2cdf4d63162580b438f7fcf87c28a46f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BirdeeHub",
+        "repo": "nix-wrapper-modules",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
