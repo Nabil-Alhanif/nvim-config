@@ -10,32 +10,13 @@ inputs:
 {
 	imports = [ wlib.wrapperModules.neovim ];
 
-	options.nvim-lib.neovimPlugins = lib.mkOption {
-		readOnly = true;
-		type = lib.types.attrsOf wlib.types.stringable;
-		default = config.nvim-lib.pluginsFromPrefix "plugins-" inputs;
-	};
-
-	options.nvim-lib.pluginsFromPrefix = lib.mkOption {
-		type = lib.types.raw;
-		readOnly = true;
-		default =
-			prefix: inputs:
-			lib.pipe inputs [
-				builtins.attrNames
-				(builtins.filter (s: lib.hasPrefix prefix s))
-				(map (
-					input:
-					let
-						name = lib.removePrefix prefix input;
-					in
-					{
-						inherit name;
-						value = config.nvim-lib.mkPlugin name inputs.${input};
-					}
-				))
-				builtins.listToAttrs
-			];
+	config.specMods = { config, ... }: {
+		options.runtimePkgs = options.runtimePkgs // {
+			description = ''
+				Packages to prepend to PATH so Neovim can find LSP servers,
+				formatters, and other tools at runtime.
+			'';
+		};
 	};
 
 	config.settings.config_directory = ./.;
@@ -121,21 +102,5 @@ inputs:
 		"eslint"
 	];
 
-	config.specMods =
-		{
-			parentSpec ? null,
-			parentOpts ? null,
-			parentName ? null,
-			config,
-			...
-		}:
-		{
-			options.runtimePkgs = options.runtimePkgs // {
-				description = ''
-					A runtimePkgs spec field to put packages on the PATH
-					If the spec is disabled, this value will not be included in the resulting neovim derivation
-				'';
-			};
-		};
 	config.runtimePkgs = config.specCollect (acc: v: acc ++ (v.runtimePkgs or [ ])) [ ];
 }
