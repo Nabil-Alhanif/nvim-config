@@ -4,9 +4,8 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 for _, name in ipairs(servers) do
 	local loaded, mod = pcall(require, "lsp." .. name)
-	if loaded then
-		vim.lsp.config(name, vim.tbl_deep_extend("force", { capabilities = capabilities }, mod))
-	end
+	local config = loaded and mod or {}
+	vim.lsp.config(name, vim.tbl_deep_extend("force", { capabilities = capabilities }, config))
 	pcall(vim.lsp.enable, name)
 end
 

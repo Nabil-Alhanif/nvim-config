@@ -15,14 +15,15 @@ function M.setup()
 		},
 		extensions = {
 			file_browser = { hidden = true, grouped = true },
-			project = { base_dirs = { "~/dev", "~" } },
 		},
 	})
 
 	require("telescope").load_extension("file_browser")
 	require("telescope").load_extension("persisted")
 	require("telescope").load_extension("project")
-	pcall(function() require("telescope").load_extension("zotero") end)
+	pcall(function()
+		require("telescope").load_extension("zotero")
+	end)
 end
 
 return M
