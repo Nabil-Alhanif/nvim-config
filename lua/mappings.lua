@@ -76,6 +76,20 @@ local defaults = {
 			require("utils.lazygit"):toggle()
 		end,
 
+		-- --- Gitsigns ---
+		["<leader>hs"] = "<cmd>Gitsigns stage_hunk<cr>",
+		["<leader>hr"] = "<cmd>Gitsigns reset_hunk<cr>",
+		["<leader>hS"] = "<cmd>Gitsigns stage_buffer<cr>",
+		["<leader>hR"] = "<cmd>Gitsigns reset_buffer<cr>",
+		["<leader>hu"] = "<cmd>Gitsigns undo_stage_hunk<cr>",
+		["<leader>hp"] = "<cmd>Gitsigns preview_hunk<cr>",
+		["<leader>hb"] = "<cmd>Gitsigns blame_line<cr>",
+		["<leader>hd"] = "<cmd>Gitsigns diffthis<cr>",
+		["<leader>hB"] = "<cmd>Gitsigns toggle_current_line_blame<cr>",
+		["<leader>ht"] = "<cmd>Gitsigns toggle_signs<cr>",
+		["]h"] = "<cmd>Gitsigns next_hunk<cr>",
+		["[h"] = "<cmd>Gitsigns prev_hunk<cr>",
+
 		-- --- Terminal (ToggleTerm) ---
 		["<leader>n"] = "<cmd>ToggleTerm size=15 direction=horizontal<cr>",
 		["<C-t>"] = "<cmd>ToggleTerm direction=float<cr>",

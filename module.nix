@@ -57,6 +57,7 @@ inputs:
 				vp."nvim-notify"
 				vp."indent-blankline-nvim"
 				vp."neo-tree-nvim"
+				vp."gitsigns-nvim"
 				vp."nui-nvim"
 				vp."plenary-nvim"
 				vp."nvim-web-devicons"
