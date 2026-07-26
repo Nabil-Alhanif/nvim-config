@@ -10,7 +10,7 @@ function M.setup()
 		},
 	}
 
-	require('neo-tree').setup(opts)
+	require("neo-tree").setup(opts)
 end
 
 return M

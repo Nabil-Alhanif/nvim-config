@@ -2,27 +2,31 @@ vim.cmd("com -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod")
 
 local autocmd = {
 	{
-		{ 'BufEnter' },
+		{ "BufEnter" },
 		{ -- Start terminal on insert mode
-			group = '_terminal',
+			group = "_terminal",
 			callback = function(args)
-				local buftype = vim.api.nvim_get_option_value('buftype', { buf = args.buf })
-				if buftype == 'terminal' then
-					vim.cmd('startinsert')
+				local buftype = vim.api.nvim_get_option_value("buftype", { buf = args.buf })
+				if buftype == "terminal" then
+					vim.cmd("startinsert")
 				end
 			end,
-		}
+		},
 	},
 	{
-		{ 'BufEnter' },
+		{ "BufEnter" },
 		{
-			group = '_buffer',
+			group = "_buffer",
 			callback = function(args)
-				if vim.bo[args.buf].filetype == 'vue' or vim.bo[args.buf].filetype == 'html' or vim.bo[args.buf].filetype == 'js' then
-					vim.cmd('setlocal tabstop=2 shiftwidth=2')
+				if
+					vim.bo[args.buf].filetype == "vue"
+					or vim.bo[args.buf].filetype == "html"
+					or vim.bo[args.buf].filetype == "js"
+				then
+					vim.cmd("setlocal tabstop=2 shiftwidth=2")
 				end
 			end,
-		}
+		},
 	},
 }
 
@@ -32,8 +36,8 @@ function M.load_autocmd(definitions)
 	for _, entry in ipairs(definitions) do
 		local event = entry[1]
 		local opts = entry[2]
-		if type(opts.group) == 'string' and opts.group ~= '' then
-			local exists, _ = pcall(vim.api.nvim_get_autocmds, { group = opts.group})
+		if type(opts.group) == "string" and opts.group ~= "" then
+			local exists, _ = pcall(vim.api.nvim_get_autocmds, { group = opts.group })
 			if not exists then
 				vim.api.nvim_create_augroup(opts.group, {})
 			end

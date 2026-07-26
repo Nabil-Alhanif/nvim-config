@@ -27,7 +27,7 @@ function M.setup()
 	]]
 
 	vim.opt.list = true
-	vim.opt.listchars:append('eol:↴')
+	vim.opt.listchars:append("eol:↴")
 
 	local opts = {
 		indent = {
@@ -39,7 +39,7 @@ function M.setup()
 		},
 	}
 
-	require('ibl').setup(opts)
+	require("ibl").setup(opts)
 end
 
 return M

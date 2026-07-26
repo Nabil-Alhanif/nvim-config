@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-	local status_ok, typst_preview = pcall(require, 'typst-preview')
+	local status_ok, typst_preview = pcall(require, "typst-preview")
 	if not status_ok then
 		return
 	end
@@ -10,4 +10,3 @@ function M.setup()
 end
 
 return M
-

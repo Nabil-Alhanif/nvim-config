@@ -50,11 +50,11 @@ function M.setup()
 
 	local status_ok, coq_3p = pcall(require, "coq_3p")
 	if status_ok then
-		coq_3p {
+		coq_3p({
 			{ src = "nvimlua", short_name = "nLUA" },
 			{ src = "repl", short_name = "SHELL" },
 			{ src = "bc", short_name = "MATH" },
-		}
+		})
 	end
 end
 

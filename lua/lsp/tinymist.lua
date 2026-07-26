@@ -2,8 +2,8 @@ local M = {
 	settings = {
 		formatterMode = "typstyle",
 		exportPdf = "onType",
-		semanticTokens = "disable"
-	}
+		semanticTokens = "disable",
+	},
 }
 
 return M
