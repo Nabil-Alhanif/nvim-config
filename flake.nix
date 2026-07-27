@@ -13,21 +13,31 @@
 		flake = false;
 	};
 
-	outputs = { self, nixpkgs, wrappers, ... }@inputs:
-	let
+	outputs = {
+		self,
+		nixpkgs,
+		wrappers,
+		...
+	} @ inputs: let
 		forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
 		module = nixpkgs.lib.modules.importApply ./module.nix inputs;
 		wrapper = wrappers.lib.evalModule module;
 	in {
-		packages = forAllSystems (system:
-			let pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-			in {
-				neovim = wrapper.config.wrap { inherit pkgs; };
-				default = self.packages.${system}.neovim;
-			}
-		);
+		packages =
+			forAllSystems (
+				system: let
+					pkgs =
+						import nixpkgs {
+							inherit system;
+							config.allowUnfree = true;
+						};
+				in {
+					neovim = wrapper.config.wrap {inherit pkgs;};
+					default = self.packages.${system}.neovim;
+				}
+			);
 		overlays = {
-			neovim = final: prev: { neovim = self.packages.${prev.system}.neovim; };
+			neovim = final: prev: {neovim = self.packages.${prev.system}.neovim;};
 			default = self.overlays.neovim;
 		};
 	};

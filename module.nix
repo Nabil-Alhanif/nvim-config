@@ -1,22 +1,22 @@
-inputs:
-{
+inputs: {
 	config,
 	wlib,
 	lib,
 	pkgs,
 	options,
 	...
-}:
-{
-	imports = [ wlib.wrapperModules.neovim ];
+}: {
+	imports = [wlib.wrapperModules.neovim];
 
-	config.specMods = { config, ... }: {
-		options.runtimePkgs = options.runtimePkgs // {
-			description = ''
-				Packages to prepend to PATH so Neovim can find LSP servers,
-				formatters, and other tools at runtime.
-			'';
-		};
+	config.specMods = {config, ...}: {
+		options.runtimePkgs =
+			options.runtimePkgs
+			// {
+				description = ''
+					Packages to prepend to PATH so Neovim can find LSP servers,
+					formatters, and other tools at runtime.
+				'';
+			};
 	};
 
 	config.settings.config_directory = ./.;
@@ -30,7 +30,7 @@ inputs:
 			tinymist
 			clang-tools
 			pyright
-			nil
+			nixd
 			typescript-language-server
 			vscode-langservers-extracted
 			vue-language-server
@@ -41,72 +41,72 @@ inputs:
 			cmake-format
 			prettierd
 			typstyle
+			alejandra
 			# Tools
 			lazygit
 			tree-sitter
 			# Required by telescope-zotero (sqlite.lua needs libsqlite3.so)
 			sqlite
 		];
-		data =
-			let
-				vp = pkgs.vimPlugins;
-			in
-			[
-				vp."catppuccin-nvim"
-				vp."alpha-nvim"
-				vp."nvim-notify"
-				vp."indent-blankline-nvim"
-				vp."neo-tree-nvim"
-				vp."gitsigns-nvim"
-				vp."nui-nvim"
-				vp."plenary-nvim"
-				vp."nvim-web-devicons"
-				vp."which-key-nvim"
-				vp."toggleterm-nvim"
-				vp."persisted-nvim"
-				vp."guess-indent-nvim"
-				vp."nvim-lspconfig"
-				vp."conform-nvim"
-				vp."fidget-nvim"
-				vp."nvim-treesitter-textobjects"
-				vp."telescope-nvim"
-				vp."telescope-file-browser-nvim"
-				vp."telescope-project-nvim"
-				vp."typst-preview-nvim"
-				# Treesitter + grammars
-				(vp."nvim-treesitter".withPlugins (
-					plugins: with plugins; [
-						nix
-						lua
-						c
-						cpp
-						python
-						javascript
-						typescript
-						tsx
-						html
-						css
-						json
-						bash
-						markdown
-						regex
-						yaml
-						toml
-						go
-						rust
-						sql
-						typst
-						vue
-						scss
-						php
-						cmake
-					]
+		data = let
+			vp = pkgs.vimPlugins;
+		in [
+			vp."catppuccin-nvim"
+			vp."alpha-nvim"
+			vp."nvim-notify"
+			vp."indent-blankline-nvim"
+			vp."neo-tree-nvim"
+			vp."gitsigns-nvim"
+			vp."nui-nvim"
+			vp."plenary-nvim"
+			vp."nvim-web-devicons"
+			vp."which-key-nvim"
+			vp."toggleterm-nvim"
+			vp."persisted-nvim"
+			vp."guess-indent-nvim"
+			vp."nvim-lspconfig"
+			vp."conform-nvim"
+			vp."fidget-nvim"
+			vp."nvim-treesitter-textobjects"
+			vp."telescope-nvim"
+			vp."telescope-file-browser-nvim"
+			vp."telescope-project-nvim"
+			vp."typst-preview-nvim"
+			# Treesitter + grammars
+			(vp."nvim-treesitter".withPlugins (
+					plugins:
+						with plugins; [
+							nix
+							lua
+							c
+							cpp
+							python
+							javascript
+							typescript
+							tsx
+							html
+							css
+							json
+							bash
+							markdown
+							regex
+							yaml
+							toml
+							go
+							rust
+							sql
+							typst
+							vue
+							scss
+							php
+							cmake
+						]
 				))
-				# Completion
-				vp."coq_nvim"
-				vp."coq-artifacts"
-				vp."coq-thirdparty"
-			];
+			# Completion
+			vp."coq_nvim"
+			vp."coq-artifacts"
+			vp."coq-thirdparty"
+		];
 	};
 
 	# External plugins not in nixpkgs
@@ -123,7 +123,7 @@ inputs:
 		"tinymist"
 		"clangd"
 		"pyright"
-		"nil_ls"
+		"nixd"
 		"ts_ls"
 		"vls"
 		"html"
@@ -132,5 +132,5 @@ inputs:
 		"eslint"
 	];
 
-	config.runtimePkgs = config.specCollect (acc: v: acc ++ (v.runtimePkgs or [ ])) [ ];
+	config.runtimePkgs = config.specCollect (acc: v: acc ++ (v.runtimePkgs or [])) [];
 }
