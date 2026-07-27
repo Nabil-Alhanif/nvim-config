@@ -13,32 +13,42 @@
 		flake = false;
 	};
 
-	outputs = {
-		self,
-		nixpkgs,
-		wrappers,
-		...
-	} @ inputs: let
-		forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
-		module = nixpkgs.lib.modules.importApply ./module.nix inputs;
-		wrapper = wrappers.lib.evalModule module;
-	in {
-		packages =
-			forAllSystems (
-				system: let
-					pkgs =
-						import nixpkgs {
-							inherit system;
-							config.allowUnfree = true;
-						};
-				in {
-					neovim = wrapper.config.wrap {inherit pkgs;};
+	outputs =
+		{
+			self,
+			nixpkgs,
+			wrappers,
+			...
+		}@inputs:
+		let
+			forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.platforms.all;
+			module = nixpkgs.lib.modules.importApply ./module.nix inputs;
+			wrapper = wrappers.lib.evalModule module;
+		in
+		{
+			packages = forAllSystems (
+				system:
+				let
+					pkgs = import nixpkgs {
+						inherit system;
+						config.allowUnfree = true;
+						overlays = [
+							(final: prev: {
+								nixfmt = prev.nixfmt.overrideAttrs (old: {
+									patches = (old.patches or [ ]) ++ [ ./patches/nixfmt-tabs.patch ];
+								});
+							})
+						];
+					};
+				in
+				{
+					neovim = wrapper.config.wrap { inherit pkgs; };
 					default = self.packages.${system}.neovim;
 				}
 			);
-		overlays = {
-			neovim = final: prev: {neovim = self.packages.${prev.system}.neovim;};
-			default = self.overlays.neovim;
+			overlays = {
+				neovim = final: prev: { neovim = self.packages.${prev.system}.neovim; };
+				default = self.overlays.neovim;
+			};
 		};
-	};
 }

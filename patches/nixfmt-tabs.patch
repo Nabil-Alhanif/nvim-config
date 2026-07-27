@@ -1,0 +1,31 @@
+--- a/main/Main.hs
++++ b/main/Main.hs
+@@ -67,7 +67,7 @@
+ options :: Nixfmt
+ options =
+   let defaultWidth = 100
+-      defaultIndent = 2
++      defaultIndent = 1
+       addDefaultHint value message =
+         message ++ "\n[default: " ++ show value ++ "]"
+   in Nixfmt
+@@ -75,7 +75,7 @@
+          width =
+            defaultWidth
+              &= help (addDefaultHint defaultWidth "Maximum width in characters"),
+-         indent = defaultIndent &= help (addDefaultHint defaultIndent "Number of spaces to use for indentation"),
++         indent = defaultIndent &= help (addDefaultHint defaultIndent "Number of tabs to use for indentation"),
+          check = False &= help "Check whether files are formatted without modifying them",
+          mergetool = False &= help "Whether to run in git mergetool mode, see https://github.com/NixOS/nixfmt?tab=readme-ov-file#git-mergetool for more info",
+          quiet = False &= help "Do not report errors",
+--- a/src/Nixfmt/Predoc.hs
++++ b/src/Nixfmt/Predoc.hs
+@@ -570,7 +570,7 @@
+ 
+ -- | Create `n` spaces
+ indent :: Int -> Text
+-indent n = Text.replicate n " "
++indent n = Text.replicate n "\t"
+ 
+ -- All state is (cc, indents, suppress)
+ -- cc: current column (within the current line, *not including indentation*)
