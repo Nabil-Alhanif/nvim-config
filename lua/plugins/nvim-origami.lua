@@ -23,7 +23,7 @@ function M.setup()
 			gitsignsCount = true,
 		},
 		autoFold = {
-			enabled = true,
+			enabled = false,
 			kinds = { "comment", "imports" },
 		},
 		foldKeymaps = {
