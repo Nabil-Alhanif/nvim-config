@@ -1,7 +1,6 @@
 local M = {}
 
 function M.setup()
-	-- default settings
 	require("origami").setup({
 		useLspFoldsWithTreesitterFallback = {
 			enabled = true,
@@ -16,7 +15,7 @@ function M.setup()
 				hlgroup = nil,
 			},
 			lineCount = {
-				template = "%d lines",
+				template = "%d  asdkfjaslkdfj;salkdjflk;asjfl;ksadjfl;ksfjda;lj lines",
 				hlgroup = "Comment",
 			},
 			diagnosticsCount = true,
@@ -32,6 +31,10 @@ function M.setup()
 			scrollLeftOnCaret = false, -- `^` should scroll left (basically mapped to `0^`)
 		},
 	})
+
+	-- Disable vim autofolding
+	vim.opt.foldlevel = 99
+	vim.opt.foldlevelstart = 99
 end
 
 return M
