@@ -77,6 +77,7 @@ inputs:
 				vp."telescope-file-browser-nvim"
 				vp."telescope-project-nvim"
 				vp."typst-preview-nvim"
+				vp."nvim-origami"
 				# Treesitter + grammars
 				(vp."nvim-treesitter".withPlugins (
 					plugins: with plugins; [
