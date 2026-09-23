@@ -46,6 +46,7 @@ inputs:
 			typstyle
 			nixfmt
 			# Tools
+			wl-clipboard
 			lazygit
 			tree-sitter
 			# Required by telescope-zotero (sqlite.lua needs libsqlite3.so)
@@ -77,6 +78,7 @@ inputs:
 				vp."telescope-file-browser-nvim"
 				vp."telescope-project-nvim"
 				vp."typst-preview-nvim"
+				vp."img-clip-nvim"
 				vp."nvim-origami"
 				# Treesitter + grammars
 				(vp."nvim-treesitter".withPlugins (

@@ -36,6 +36,7 @@ local defaults = {
 		["<C-y>"] = function()
 			vim.snippet.jump(1)
 		end,
+		["<C-v>"] = "<cmd>PasteImageWithPrompt<cr>",
 	},
 	normal_mode = {
 		-- --- LSP Diagnostics (Modern API) ---
@@ -93,6 +94,10 @@ local defaults = {
 		-- --- Terminal (ToggleTerm) ---
 		["<leader>n"] = "<cmd>ToggleTerm size=15 direction=horizontal<cr>",
 		["<C-t>"] = "<cmd>ToggleTerm direction=float<cr>",
+
+		-- --- Clipboard Image ---
+		["<leader>p"] = "<cmd>PasteImageWithPrompt<cr>",
+		["<C-v>"] = "<cmd>PasteImageWithPrompt<cr>",
 	},
 	term_mode = {
 		-- Escape terminal mode easily
