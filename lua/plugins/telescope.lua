@@ -21,9 +21,6 @@ function M.setup()
 	require("telescope").load_extension("file_browser")
 	require("telescope").load_extension("persisted")
 	require("telescope").load_extension("project")
-	pcall(function()
-		require("telescope").load_extension("zotero")
-	end)
 end
 
 return M

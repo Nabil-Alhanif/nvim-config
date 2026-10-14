@@ -24,6 +24,8 @@ local autocmd = {
 					or vim.bo[args.buf].filetype == "js"
 				then
 					vim.cmd("setlocal tabstop=2 shiftwidth=2")
+				else
+					vim.cmd("setlocal tabstop=4 shiftwidth=4")
 				end
 			end,
 		},

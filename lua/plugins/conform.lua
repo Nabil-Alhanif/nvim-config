@@ -3,13 +3,9 @@ local M = {}
 function M.setup()
 	local opts = {
 		formatters = {
-			typstyle_tabs = {
-				command = "bash",
-				args = {
-					"-c",
-					"set -o pipefail; typstyle --indent-width 4 | sed -e ':a' -e 's/^\\(\\t*\\)    /\\1\\t/' -e 'ta'",
-					"typstyle-tabs",
-				},
+			typstyle = {
+				command = "typstyle",
+				args = { "--indent-width", "4" },
 				stdin = true,
 			},
 		},
@@ -21,7 +17,7 @@ function M.setup()
 			lua = { "stylua" },
 			python = { "black" },
 			cmake = { "cmake_format" },
-			typst = { "typstyle_tabs" },
+			typst = { "typstyle" },
 		},
 		format_on_save = {
 			lsp_format = "fallback",

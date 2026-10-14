@@ -2,11 +2,11 @@
   "nodes": {
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784842214,
-        "narHash": "sha256-5RtCAzg/n1n2Yp0mtDiZzZFJzvqR4jHleWeqD7b5G14=",
+        "lastModified": 1791637130,
+        "narHash": "sha256-TuvwvSjJrpqyIYdjhQ7Wu+ADVfeOpO2Um21/V7TOubw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "91cc1fdf6831e29b6c98768e721a72241f3d0797",
+        "rev": "ca1659429c950a11a565b5764e37a1b704e17ec8",
         "type": "github"
       },
       "original": {
@@ -19,41 +19,8 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "sqlite-lua": "sqlite-lua",
-        "telescope-zotero": "telescope-zotero",
-        "wrappers": "wrappers"
-      }
-    },
-    "sqlite-lua": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1741959551,
-        "narHash": "sha256-u6Mo+3hg3miqR4EmsoGZhajxiIk24+y5N+YdNW36/JQ=",
-        "owner": "kkharji",
-        "repo": "sqlite.lua",
-        "rev": "50092d60feb242602d7578398c6eb53b4a8ffe7b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kkharji",
-        "repo": "sqlite.lua",
-        "type": "github"
-      }
-    },
-    "telescope-zotero": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1779443939,
-        "narHash": "sha256-zbIaTW3v3xvwZW+CUiXXMFxS+ftNq2jLM4TWFjquwgM=",
-        "owner": "jmbuhr",
-        "repo": "telescope-zotero.nvim",
-        "rev": "376728bccfcbce95f59ef028d93bf0a33ee34bc2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "jmbuhr",
-        "repo": "telescope-zotero.nvim",
-        "type": "github"
+        "wrappers": "wrappers",
+        "zotcite": "zotcite"
       }
     },
     "wrappers": {
@@ -63,16 +30,32 @@
         ]
       },
       "locked": {
-        "lastModified": 1782135443,
-        "narHash": "sha256-vAmbArdCyjqpVW+37aCy/PMBOLIqukUXLQuEKLwUhA4=",
+        "lastModified": 1791927952,
+        "narHash": "sha256-xnL4ZqUe2j/SYTAHQ8999+Ke5Xg7P+NKgdvXlRNLN24=",
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
-        "rev": "6e7f66fa2cdf4d63162580b438f7fcf87c28a46f",
+        "rev": "74aaee6e989833345d2c67dc3090ffe8eb2a4dfa",
         "type": "github"
       },
       "original": {
         "owner": "BirdeeHub",
         "repo": "nix-wrapper-modules",
+        "type": "github"
+      }
+    },
+    "zotcite": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1791114678,
+        "narHash": "sha256-pK+sVsJU0ogMTRQjsFsdcTaDtemA0PwQYiB8NH0v8Ck=",
+        "owner": "jalvesaq",
+        "repo": "zotcite",
+        "rev": "f57a5ebc67bd7768da1abd5ba270ec7426b32c6a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jalvesaq",
+        "repo": "zotcite",
         "type": "github"
       }
     }

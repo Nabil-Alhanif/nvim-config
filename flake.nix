@@ -4,15 +4,10 @@
 	inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 	inputs.wrappers.url = "github:BirdeeHub/nix-wrapper-modules";
 	inputs.wrappers.inputs.nixpkgs.follows = "nixpkgs";
-	inputs.telescope-zotero = {
-		url = "github:jmbuhr/telescope-zotero.nvim";
+	inputs.zotcite = {
+		url = "github:jalvesaq/zotcite";
 		flake = false;
 	};
-	inputs.sqlite-lua = {
-		url = "github:kkharji/sqlite.lua";
-		flake = false;
-	};
-
 	outputs =
 		{
 			self,

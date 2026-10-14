@@ -17,7 +17,7 @@ Overlay also exported for system/home-manager consumption. `result` is gitignore
 | LSP server list | `module.nix:121` `config.info.lspServers` | Defined in Nix, read at runtime by `lua/lsp.lua` via Nix info plugin. |
 | Per-server config | `lua/lsp/<name>.lua` | File name must match entry in `info.lspServers`. |
 | Plugins, LSPs, formatters | `module.nix` `runtimePkgs` + `data` | All provisioned through Nix, **not** Mason or lazy.nvim. |
-| LD_LIBRARY_PATH | `module.nix:24` | sqlite lib added for telescope-zotero. |
+| sqlite | `module.nix:49` | sqlite3 CLI required by zotcite. |
 
 ## Config quirks (non-default)
 
@@ -34,8 +34,9 @@ Overlay also exported for system/home-manager consumption. `result` is gitignore
 
 | Keys | Action |
 |---|---|
+| `<C-b>` (Insert) | Zotcite citation insertion using Better BibTeX keys |
 | `<leader>e` | Neo-tree toggle |
-| `<leader>ff/fg/fb/fh/fe/fp/fs/fz` | Telescope: files, grep, buffers, help, file\_browser, project, persisted, zotero |
+| `<leader>ff/fg/fb/fh/fe/fp/fs/fz` | Telescope: files, grep, buffers, help, file\_browser, project, persisted, Zotcite |
 | `<leader>f./fc/fk` | Telescope: oldfiles, commands, keymaps |
 | `<leader>gg` | lazygit (float) |
 | `<leader>hs/hr/hS/hR/hu/hp/hb/hd/hB/ht` | Gitsigns: stage/reset hunks, blame, diff, toggle |
@@ -48,7 +49,7 @@ Overlay also exported for system/home-manager consumption. `result` is gitignore
 
 ## Nix module structure
 
-- `flake.nix` inputs: `nix-wrapper-modules` + flake-less `telescope-zotero` + `sqlite.lua`.
+- `flake.nix` inputs: `nix-wrapper-modules` + flake-less `zotcite`.
 - Treesitter grammars: nix, lua, c, cpp, python, js, ts, tsx, html, css, json, bash, markdown, regex, yaml, toml, go, rust, sql, typst, vue, scss, php, cmake.
 - Formatters: stylua, black, cmake-format, prettierd, typstyle.
 - LSP servers: lua\_ls, tinymist, clangd, pyright, nil, tsserver, vls, html, cssls, jsonls, eslint.

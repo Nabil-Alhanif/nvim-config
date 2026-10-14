@@ -32,6 +32,8 @@ local mode_adapters = {
 
 local defaults = {
 	insert_mode = {
+		-- Zotcite: type @ and an optional search term, then insert a citation
+		["<C-b>"] = "<Plug>ZCite",
 		-- Snippet jump forward (replaces coq.nvim's removed jump_to_mark)
 		["<C-y>"] = function()
 			vim.snippet.jump(1)
@@ -67,7 +69,7 @@ local defaults = {
 		["<leader>fe"] = "<cmd>Telescope file_browser<cr>",
 		["<leader>fp"] = "<cmd>Telescope project<cr>",
 		["<leader>fs"] = "<cmd>Telescope persisted<cr>",
-		["<leader>fz"] = "<cmd>Telescope zotero<cr>",
+		["<leader>fz"] = "<cmd>Zseek<cr>",
 		["<leader>f."] = "<cmd>Telescope oldfiles<cr>",
 		["<leader>fc"] = "<cmd>Telescope commands<cr>",
 		["<leader>fk"] = "<cmd>Telescope keymaps<cr>",

@@ -24,8 +24,6 @@ inputs:
 
 	config.settings.config_directory = ./.;
 
-	config.env.LD_LIBRARY_PATH = lib.mkOverride 500 "${lib.getOutput "out" pkgs.sqlite}/lib";
-
 	config.specs.general = {
 		runtimePkgs = with pkgs; [
 			# LSP servers
@@ -49,7 +47,7 @@ inputs:
 			wl-clipboard
 			lazygit
 			tree-sitter
-			# Required by telescope-zotero (sqlite.lua needs libsqlite3.so)
+			# Required by zotcite
 			sqlite
 		];
 		data =
@@ -119,8 +117,7 @@ inputs:
 	# External plugins not in nixpkgs
 	config.specs.external = {
 		data = [
-			(config.nvim-lib.mkPlugin "sqlite.lua" inputs.sqlite-lua)
-			(config.nvim-lib.mkPlugin "telescope-zotero.nvim" inputs.telescope-zotero)
+			(config.nvim-lib.mkPlugin "zotcite" inputs.zotcite)
 		];
 	};
 

@@ -21,6 +21,9 @@ require("plugins.conform").setup()
 require("plugins.gitsigns").setup()
 require("plugins.nvim-treesitter").setup()
 require("plugins.telescope").setup()
+require("zotcite").setup({
+	key_type = "better-bibtex",
+})
 require("plugins.typst-preview").setup()
 require("plugins.img-clip").setup()
 require("plugins.nvim-origami").setup()
