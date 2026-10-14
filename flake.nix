@@ -29,6 +29,21 @@
 						config.allowUnfree = true;
 						overlays = [
 							(final: prev: {
+								# The nixpkgs hash for 6.0.2's pnpm store is stale.
+								typescript-language-server =
+									if prev.typescript-language-server.version == "6.0.2" then
+										prev.typescript-language-server.overrideAttrs (
+										finalAttrs: _: {
+											pnpmDeps = prev.fetchPnpmDeps {
+												inherit (finalAttrs) pname version src;
+												pnpm = prev.pnpm_12;
+												fetcherVersion = 4;
+												hash = "sha256-xR/EF60lVBsITKgH7wCM2wHM46PFQevD51KfCENSUH4=";
+											};
+										}
+										)
+									else
+										prev.typescript-language-server;
 								nixfmt = prev.nixfmt.overrideAttrs (old: {
 									patches = (old.patches or [ ]) ++ [ ./patches/nixfmt-tabs.patch ];
 								});
