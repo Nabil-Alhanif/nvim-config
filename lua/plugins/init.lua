@@ -24,6 +24,9 @@ require("plugins.telescope").setup()
 require("zotcite").setup({
 	key_type = "better-bibtex",
 })
+vim.api.nvim_create_user_command("Zcite", function()
+	require("zotcite.get").citation()
+end, { desc = "Zotcite: insert citation" })
 require("plugins.typst-preview").setup()
 require("plugins.img-clip").setup()
 require("plugins.nvim-origami").setup()

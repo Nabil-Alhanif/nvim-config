@@ -29,6 +29,8 @@ inputs:
 			# LSP servers
 			lua-language-server
 			tinymist
+			arduino-language-server
+			arduino-cli
 			clang-tools
 			pyright
 			nixd
@@ -125,6 +127,7 @@ inputs:
 	config.info.lspServers = [
 		"lua_ls"
 		"tinymist"
+		"arduino_language_server"
 		"clangd"
 		"pyright"
 		"nixd"

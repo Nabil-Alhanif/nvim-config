@@ -10,6 +10,7 @@ function M.setup()
 			},
 		},
 		formatters_by_ft = {
+			arduino = { "clang_format" },
 			cpp = { "clang_format" },
 			hpp = { "clang_format" },
 			c = { "clang_format" },
